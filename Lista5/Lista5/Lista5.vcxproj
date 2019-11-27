@@ -151,10 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CTreeDynamic.h" />
     <ClInclude Include="CTreeStatic.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CTreeDynamic.cpp" />
     <ClCompile Include="CTreeStatic.cpp" />
     <ClCompile Include="Lista5.cpp" />
     <ClCompile Include="pch.cpp">
