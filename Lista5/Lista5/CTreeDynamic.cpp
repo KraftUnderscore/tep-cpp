@@ -18,6 +18,17 @@ void CNodeDynamic::vAddNewChild()
 	v_children.push_back(pc_new_child);
 }
 
+void CNodeDynamic::vAddNewChild(CNodeDynamic* pcNewChildNode)
+{
+	pcNewChildNode->pc_parent_node = this;
+	v_children.push_back(pcNewChildNode);
+}
+
+bool CNodeDynamic::bDetachChild(CNodeDynamic* pcChild)
+{
+	v_children.
+}
+
 CNodeDynamic* CNodeDynamic::pcGetChild(int iChildOffset)
 {
 	if (iChildOffset >= iGetChildrenNumber())return NULL;
@@ -51,4 +62,11 @@ CTreeDynamic::~CTreeDynamic()
 void CTreeDynamic::vPrintTree()
 {
 	pc_root->vPrintAllBelow();
+}
+
+bool CTreeDynamic::vMoveSubtree(CNodeDynamic* pcParentNode, CNodeDynamic* pcNewChildNode)
+{
+	if (pcParentNode == NULL || pcNewChildNode == NULL)return false;
+
+	pcParentNode->vAddNewChild(pcNewChildNode);
 }
