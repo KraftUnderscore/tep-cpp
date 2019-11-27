@@ -1,22 +1,25 @@
 #include "pch.h"
 #include <iostream>
-#include "CNodeStatic.h"
+#include "CTreeStatic.h"
 
 int main()
 {
-	CNodeStatic c_root;
-	c_root.vAddNewChild();
-	c_root.vAddNewChild();
-	c_root.pcGetChild(0)->vSetValue(1);
-	c_root.pcGetChild(1)->vSetValue(2);
-	c_root.pcGetChild(0)->vAddNewChild();
-	c_root.pcGetChild(0)->vAddNewChild();
-	c_root.pcGetChild(0)->pcGetChild(0)->vSetValue(11);
-	c_root.pcGetChild(0)->pcGetChild(1)->vSetValue(12);
-	c_root.pcGetChild(1)->vAddNewChild();
-	c_root.pcGetChild(1)->vAddNewChild();
-	c_root.pcGetChild(1)->pcGetChild(0)->vSetValue(21);
-	c_root.pcGetChild(1)->pcGetChild(1)->vSetValue(22);
+	CTreeStatic c_tree;
 
-	c_root.vPrintAllBelow();
+	c_tree.pcGetRoot()->vAddNewChild();
+	c_tree.pcGetRoot()->vAddNewChild();
+	c_tree.pcGetRoot()->pcGetChild(0)->vSetValue(1);
+	c_tree.pcGetRoot()->pcGetChild(1)->vSetValue(2);
+	c_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild();
+	c_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild();
+	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(0)->vSetValue(11);
+	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vSetValue(12);
+	c_tree.pcGetRoot()->pcGetChild(1)->vAddNewChild();
+	c_tree.pcGetRoot()->pcGetChild(1)->vAddNewChild();
+	c_tree.pcGetRoot()->pcGetChild(1)->pcGetChild(0)->vSetValue(21);
+	c_tree.pcGetRoot()->pcGetChild(1)->pcGetChild(1)->vSetValue(22);
+
+	c_tree.vPrintTree();
+	std::cout << "\n";
+	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vPrintUp();
 }

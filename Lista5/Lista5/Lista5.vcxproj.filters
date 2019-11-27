@@ -18,7 +18,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CNodeStatic.h">
+    <ClInclude Include="CTreeStatic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClCompile Include="Lista5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CNodeStatic.cpp">
+    <ClCompile Include="CTreeStatic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
