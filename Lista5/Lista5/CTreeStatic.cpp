@@ -5,10 +5,9 @@
 
 using namespace std;
 
-CNodeStatic::~CNodeStatic()//cos nie tak :////
+CNodeStatic::~CNodeStatic()
 {
-	for (int ii = 0; ii < iGetChildrenNumber(); ii++);
-	//delete pcGetChild(ii);
+
 }
 
 void CNodeStatic::vAddNewChild()
@@ -20,7 +19,7 @@ void CNodeStatic::vAddNewChild()
 
 CNodeStatic* CNodeStatic::pcGetChild(int iChildOffset)
 {
-	if (iChildOffset >= iGetChildrenNumber())return NULL;
+	if (iChildOffset >= iGetChildrenNumber() || iChildOffset < 0)return NULL;
 
 	return &v_children[iChildOffset];
 }
