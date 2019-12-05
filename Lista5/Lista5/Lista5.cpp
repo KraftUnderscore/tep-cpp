@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	cout << "Static tree test\n";
+	/*cout << "Static tree test\n";
 
 	CTreeStatic c_tree;
 
@@ -76,6 +76,18 @@ int main()
 	}
 	else
 	{
-		cout << "\nMove failed.";
+		cout << "\nMove failed\n.";
 	}
+	*/
+	CTreeDynamic c_test_tree;
+	c_test_tree.pcGetRoot()->vSetValue(1);
+	c_test_tree.pcGetRoot()->vAddNewChild(3);
+	c_test_tree.pcGetRoot()->vAddNewChild(8);
+	c_test_tree.pcGetRoot()->vAddNewChild(11);
+	c_test_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild(5);
+	c_test_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild(28);
+	c_test_tree.pcGetRoot()->pcGetChild(2)->vAddNewChild(6);
+	c_test_tree.pcGetRoot()->pcGetChild(2)->pcGetChild(0)->vAddNewChild(7);
+
+	c_test_tree.vPrintByLevel();
 }

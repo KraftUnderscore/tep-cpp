@@ -2,6 +2,7 @@
 #include "CTreeDynamic.h"
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <algorithm>
 
 using namespace std;
@@ -60,6 +61,38 @@ void CNodeDynamic::vPrintUp()
 	if (pc_parent_node != NULL)pc_parent_node->vPrintUp();
 }
 
+void CNodeDynamic::vPrintBreadth()
+{
+	queue<CNodeDynamic *> q_nodes_to_visit;
+	q_nodes_to_visit.push(this);
+	while (!q_nodes_to_visit.empty())
+	{
+		int i_nodes_on_level = q_nodes_to_visit.size();
+		while (i_nodes_on_level>0)
+		{
+			CNodeDynamic* pc_current_node = q_nodes_to_visit.front();
+			for (int ii = 0; ii < pc_current_node->iGetChildrenNumber(); ii++)
+			{
+				q_nodes_to_visit.push(pc_current_node->pcGetChild(ii));
+			}
+			q_nodes_to_visit.front()->vPrint();
+			q_nodes_to_visit.pop();
+			i_nodes_on_level--;
+		}
+		cout << "\n";
+	}
+}
+
+void CNodeDynamic::vGetChildren(vector<CNodeDynamic*>*v_all_nodes)
+{
+	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
+	{
+		v_all_nodes->push_back(pcGetChild(ii));
+		pcGetChild(ii)->vGetChildren(v_all_nodes);
+	}
+}
+
+
 CTreeDynamic::CTreeDynamic()
 {
 	pc_root = new CNodeDynamic();
@@ -73,6 +106,11 @@ CTreeDynamic::~CTreeDynamic()
 void CTreeDynamic::vPrintTree()
 {
 	pc_root->vPrintAllBelow();
+}
+
+void CTreeDynamic::vPrintByLevel()
+{
+	pc_root->vPrintBreadth();
 }
 
 bool CTreeDynamic::bMoveSubtree(CNodeDynamic* pcParentNode, CNodeDynamic* pcNewChildNode)
