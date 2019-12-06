@@ -27,6 +27,7 @@ public:
 	void vPrintAllBelow();
 	void vPrintUp();
 	void vPrintBreadth();
+	T tSumByLvl();
 private:
 	vector<CNodeDynamic *> v_children;
 	CNodeDynamic *pc_parent_node;
@@ -41,6 +42,7 @@ public:
 	CNodeDynamic<T> *pcGetRoot() { return(pc_root); }
 	void vPrintTree();
 	void vPrintByLevel();
+	T tSumByLvl();
 	bool bMoveSubtree(CNodeDynamic<T>* pcParentNode, CNodeDynamic<T>* pcNewChildNode);
 private:
 	CNodeDynamic<T> *pc_root;
@@ -132,6 +134,33 @@ void CNodeDynamic<T>::vPrintBreadth()
 }
 
 template <typename T>
+T CNodeDynamic<T>::tSumByLvl()
+{
+	queue<CNodeDynamic *> q_nodes_to_visit;
+	T t_result = T();
+	int i_level = 1;
+	q_nodes_to_visit.push(this);
+	while (!q_nodes_to_visit.empty())
+	{
+		int i_nodes_on_level = q_nodes_to_visit.size();
+		while (i_nodes_on_level > 0)
+		{
+			CNodeDynamic* pc_current_node = q_nodes_to_visit.front();
+			for (int ii = 0; ii < pc_current_node->iGetChildrenNumber(); ii++)
+			{
+				q_nodes_to_visit.push(pc_current_node->pcGetChild(ii));
+			}
+			t_result += q_nodes_to_visit.front()->i_val * i_level;
+			q_nodes_to_visit.pop();
+			i_nodes_on_level--;
+		}
+		i_level++;
+
+	}
+	return t_result;
+}
+
+template <typename T>
 void CNodeDynamic<T>::vGetChildren(vector<CNodeDynamic<T>*>*v_all_nodes)
 {
 	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
@@ -176,4 +205,10 @@ bool CTreeDynamic<T>::bMoveSubtree(CNodeDynamic<T>* pcParentNode, CNodeDynamic<T
 	pcParentNode->vAddNewChild(pcNewChildNode);
 
 	return true;
+}
+
+template <typename T>
+T CTreeDynamic<T>::tSumByLvl()
+{
+	return pc_root->tSumByLvl();
 }
