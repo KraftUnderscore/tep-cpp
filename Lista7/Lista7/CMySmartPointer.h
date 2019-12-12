@@ -3,7 +3,7 @@
 class CRefCounter
 {
 public:
-	CRefCounter() { i_count; }
+	CRefCounter() { i_count = 0; }
 	int iAdd() { return(++i_count); }
 	int iDec() { return(--i_count); };
 	int iGet() { return(i_count); }
@@ -17,8 +17,8 @@ public:
 	CMySmartPointer(T *ptPointer);
 	CMySmartPointer(const CMySmartPointer &pcOther);
 	~CMySmartPointer();
-	T& operator*(){return (*pt_pointer) }
-	T* operator->(){return (pt_pointer) }
+	T& operator*() { return (*pt_pointer); }
+	T* operator->() { return (pt_pointer); }
 	void operator=(const CMySmartPointer &pcOther);
 private:
 	T *pt_pointer;
