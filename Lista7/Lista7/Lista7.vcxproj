@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CMySmartPointer.h" />
+    <ClInclude Include="CTabSmartPointer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
