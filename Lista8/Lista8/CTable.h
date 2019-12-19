@@ -10,17 +10,19 @@ public:
 	CTable(std::string sName, int iTableLen);
 	CTable(const CTable &pcOther);
 	CTable(CTable &&pcOther);
-	int* operator +(CTable &pcOther);
+	~CTable();
+	int operator +(CTable &pcOther);
 	CTable operator +(int iValue);
-	void vSetName(std::string sName);
-	bool bSetNewSize(int iTableLen);
+	CTable operator=(const CTable &pcOther);
+	CTable operator=(const CTable &&pcOther);
 	CTable *pcClone();
 	CTable *pcGetReverted();
 	void vFillTable();
 	void vFillTable(int iValue);
-	~CTable();
 	void vPrintAllValues();
 	void vSetValueAt(int iOffset, int iValue);
+	void vSetName(std::string sName);
+	bool bSetNewSize(int iTableLen);
 
 private:
 	std::string sName;

@@ -30,16 +30,18 @@ CTable::CTable(const CTable &pcOther)
 	std::cout << "kopiuj: '" << sName << "'\n";
 }
 
-CTable::CTable(CTable &&pcOther)
+CTable::CTable(CTable &&cOther)
 {
-	piTable = pcOther.piTable;
-	iTableLen = pcOther.iTableLen;
-	sName = pcOther.sName;
+	piTable = cOther.piTable;
+	iTableLen = cOther.iTableLen;
+	sName = cOther.sName;
 
-	pcOther.piTable = NULL;
+	cOther.piTable = NULL;
+
+	std::cout << "moveConst\n";
 }
 
-int* CTable::operator+(CTable &pcOther)
+int CTable::operator+(CTable &pcOther)
 {
 	int iNewTabLen = iTableLen + pcOther.iTableLen;
 	int *piNewTable = new int[iNewTabLen];
@@ -48,7 +50,7 @@ int* CTable::operator+(CTable &pcOther)
 		if (ii < iTableLen)piNewTable[ii] = piTable[ii];
 		else piNewTable[ii] = pcOther.piTable[ii - iTableLen];
 	}
-	return piNewTable;
+	return *piNewTable;
 }
 
 CTable CTable::operator+(int iValue)
@@ -61,6 +63,38 @@ CTable CTable::operator+(int iValue)
 		else cTab.piTable[ii] = piTable[ii];
 	}
 	return (std::move (cTab));
+}
+
+CTable CTable::operator=(const CTable &cOther)
+{
+	if (piTable != NULL) delete piTable;
+
+	sName = cOther.sName + "_copy";
+	iTableLen = cOther.iTableLen;
+	piTable = new int[iTableLen];
+	for (int ii = 0; ii < iTableLen; ii++)
+	{
+		piTable[ii] = cOther.piTable[ii];
+	}
+
+	std::cout << "move_op=\n";
+	return (*this);
+}
+
+CTable CTable::operator=(const CTable &&cOther)
+{
+	if (piTable != NULL) delete piTable;
+
+	sName = cOther.sName + "_moveCopy";
+	iTableLen = cOther.iTableLen;
+	piTable = new int[iTableLen];
+	for (int ii = 0; ii < iTableLen; ii++)
+	{
+		piTable[ii] = cOther.piTable[ii];
+	}
+
+	std::cout << "move_op=\n";
+	return std::move(*this);
 }
 
 void CTable::vSetName(std::string sName)
