@@ -23,7 +23,7 @@
     <ProjectGuid>{8B5DBB17-183B-4927-8546-0AFB93C8A897}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Lista8</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -151,11 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CMyStr.h" />
     <ClInclude Include="CTab.h" />
     <ClInclude Include="CTable.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CMyStr.cpp" />
     <ClCompile Include="CTab.cpp" />
     <ClCompile Include="CTable.cpp" />
     <ClCompile Include="Lista8.cpp" />
